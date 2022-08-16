@@ -1,4 +1,11 @@
+
 //Initialization class for the ball
+#include <iostream>
+#include <vector>
+#include "brick.h"
+using namespace std;
+
+using std::vector; 
 class ball {
 	public:             
         //position of the ball
@@ -7,7 +14,6 @@ class ball {
         //position when we want to reset the ball
         int centerx;
         int centery;
-
 
         Vector2 ballPosition;
         Vector2 speed = { 5.0f, 4.0f };
@@ -57,12 +63,29 @@ class ball {
         }
         void bouncebob(int x, int y, int w, int h)
         {
-            Rectangle rec = {static_cast<float>(x),static_cast<float>(y),static_cast<float>(w),static_cast<float>(h)};
-            if(CheckCollisionCircleRec(ballPosition, ballRadius, rec))
+            Vector2 lucien = {ballPosition.x+speed.x,ballPosition.y+speed.y};
+            Rectangle left = {static_cast<float>(x),static_cast<float>(y+0.5),0.1,static_cast<float>(h-0.5)};
+            if(CheckCollisionCircleRec(lucien, ballRadius, left))
             {
+                speed.x *= -1.0f;
                 speed.y *= -1.0f;
+
             }
 
+            Rectangle right = {static_cast<float>(x+w),static_cast<float>(y+0.5),-0.1,static_cast<float>(h-0.5)};
+            if(CheckCollisionCircleRec(lucien, ballRadius, right))
+            {
+                speed.x *= -1.0f;
+                speed.y *= -1.0f;
+            }
+            Rectangle rec = {static_cast<float>(x+0.1),static_cast<float>(y),static_cast<float>(w-0.1),static_cast<float>(h)};
+            if(CheckCollisionCircleRec(lucien, ballRadius, rec))
+            {
+                speed.y *= -1.0f;
+                
+                
+            }
+           
         }
 };
 

@@ -136,20 +136,15 @@ int main(void)
 
                 for (int j=0; j<sizeof(wall); ++j)
                 {
-                    b.bouncebob(brickList[j].x,brickList[j].y,brickList[j].w,brickList[j].h);
-                    
-
-                    if(brickList[j].col(b.posx,b.posy))
+                    if(brickList[j].col(b.ballPosition,b.ballRadius))
                     {
-                        cout<<"This fucking code work";
-                        //brickList[j].erase();
+                        b.bouncebob(brickList[j].x,brickList[j].y,brickList[j].w,brickList[j].h);
+
                         brickList[j].del();
                     }
-                }
-                
 
-                //colision player & ball
-                //b.colision(player1.posx,player1.posy);
+                    
+                }
                 
             } break;
              default: break;

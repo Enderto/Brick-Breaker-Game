@@ -1,4 +1,10 @@
+#ifndef MYHEADEFILE_H
+#define MYHEADEFILE_H
 
+
+#include <iostream>
+#include<string>
+using namespace std;
 class brick
 {
     public:
@@ -24,17 +30,16 @@ class brick
             DrawRectangle(x, y, w, h, color);
         }
         
-        bool col(int cx, int cy)
+        bool col(Vector2 ball, int ballrad)
         {
-            Vector2 coll = {static_cast<float>(cx),static_cast<float>(cy)};
+            //Vector2 coll = {static_cast<float>(cx),static_cast<float>(cy)};
             Rectangle Cord = {x,y,w,h};
-            if (CheckCollisionCircleRec(coll,15, Cord))
+            if (CheckCollisionCircleRec(ball,ballrad, Cord))
             {
                 return true;
             }
             else
                 return false;
-            
         }
 
         void del()
@@ -46,3 +51,5 @@ class brick
             real = false;
         }
 };
+
+#endif
