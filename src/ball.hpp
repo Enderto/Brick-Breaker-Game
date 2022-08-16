@@ -2,15 +2,15 @@
 //Initialization class for the ball
 #include <iostream>
 #include <vector>
-#include "brick.h"
+#include "brick.hpp"
 using namespace std;
 
-using std::vector; 
+using std::vector;
 class ball {
-	public:             
+	public:
         //position of the ball
-        int posx;        
-		int posy; 
+        int posx;
+		int posy;
         //position when we want to reset the ball
         int centerx;
         int centery;
@@ -18,7 +18,7 @@ class ball {
         Vector2 ballPosition;
         Vector2 speed = { 5.0f, 4.0f };
         int ballRadius = 15;
-		
+
 		ball(int x,int y)// get position
 		{
 			this->posx = x;
@@ -46,7 +46,7 @@ class ball {
             speed.y = 2;
             this->posx = centerx;
             this->posy = centery;
-            
+
         }
 		//draw ball
         void drawball()
@@ -56,7 +56,7 @@ class ball {
 
         void bounce()
         {
-            
+
             if ((ballPosition.x >= (GetScreenWidth() - ballRadius)) || (ballPosition.x <= ballRadius)) speed.x *= -1.0f;
             if ((ballPosition.y >= (GetScreenHeight() - ballRadius)) || (ballPosition.y <= ballRadius)) speed.y *= -1.0f;
 
@@ -82,12 +82,9 @@ class ball {
             if(CheckCollisionCircleRec(lucien, ballRadius, rec))
             {
                 speed.y *= -1.0f;
-                
-                
+
+
             }
-           
+
         }
 };
-
-
-

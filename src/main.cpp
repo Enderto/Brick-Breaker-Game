@@ -1,13 +1,13 @@
 #include <raylib.h>
-#include "ball.h"
-#include "tool.h"
-#include "pad.h"
-#include "brick.h"
+#include "ball.hpp"
+#include "tool.hpp"
+#include "pad.hpp"
+#include "brick.hpp"
 #include <vector>
 #include <iostream>
 #include <cstdlib>
 
-using std::vector; 
+using std::vector;
 // Types and Structures Definition
 
 
@@ -63,25 +63,26 @@ int main(void)
                 {
                     brick SomeBrick(200+(65*k),100*(i+1%10)+1,RED);
                     brickList.push_back(SomeBrick);
+
                 }
-                
+
             }
         }
-        
+
     }
     //other
-    int framesCounter = 0; 
+    int framesCounter = 0;
 
     button start((screenWidth/2)-20,(screenHeight/2),150,40,GREEN,"Start");
     button credit((screenWidth/2)-20,(screenHeight/2)+50,150,40,YELLOW,"Credit");
     button option((screenWidth/2)-20,(screenHeight/2)+100,150,40,BLUE,"option");
     button exit((screenWidth/2)-20,(screenHeight/2)+150,150,40,RED,"exit");
-    
+
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
     {
         mousePoint = GetMousePosition(); //Get mouse position
-        
+
         // Update
         switch(currentScreen)
         {
@@ -131,7 +132,7 @@ int main(void)
                         scoreP1++;
 
                     b.reset();
-                    
+
                 }
 
                 for (int j=0; j<sizeof(wall); ++j)
@@ -143,9 +144,9 @@ int main(void)
                         brickList[j].del();
                     }
 
-                    
+
                 }
-                
+
             } break;
              default: break;
         }
@@ -157,11 +158,11 @@ int main(void)
             {
                 case LOGO:
                 {
-                    
+
                     ClearBackground(GRAY);
                     // Draw logo
                     DrawTexture(texture, screenWidth/2 - texture.width/2, screenHeight/2 - texture.height/2, WHITE);
-                    
+
 
                 } break;
                 case TITLE:
@@ -173,7 +174,7 @@ int main(void)
                     option.drawbut();
                     exit.drawbut();
                     DrawText("PONG", screenWidth/3, 40, 40, BLACK);
-                    
+
 
                 } break;
                 case GAMEPLAY:
@@ -198,15 +199,15 @@ int main(void)
                  default: break;
             }
 
-           
+
 
         EndDrawing();
-        
+
     }
 
     // De-Initialization
     brickList.clear();
-    
+
     UnloadTexture(texture);
     CloseWindow();        // Close window and OpenGL context
 
