@@ -13,12 +13,10 @@ A simple game made with c++ and raylib
 [Raylib](https://www.raylib.com/)
 ### Linux :
 ```
-mkdir build
-cd build
-cmake ..
+cmake src
 make
 ```
-and then execude Main
+and then execude Main in bin folder
 ### Windows :
 Follow instruction from [raylib](https://github.com/raysan5/raylib/wiki/Working-on-Windows)
 
