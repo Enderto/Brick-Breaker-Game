@@ -1,4 +1,5 @@
 //Initialization class for player
+#include <raylib.h>
 class pad {
 
 	public:        //position of the player     

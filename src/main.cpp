@@ -38,16 +38,17 @@ int main(void)
     //mouse position
     Vector2 mousePoint = { 0.0f, 0.0f };
 
-    //first brick (test)
-    //brick bob(300,100,GRAY);
-    int SIZE = 10;
+    const int SIZE = 10;
     int wall[SIZE][SIZE] =  {
                             {0,1,1,0,2,1,0,2,1,2},
                             {1,0,0,2,0,2,0,2,2,1}
             };
     //test shema
+
     vector<brick> brickList;
     brickList.clear();
+
+
 	for (int i=0; i<SIZE; ++i)
 	{
         for (int k=0; k<SIZE; ++k)
@@ -56,12 +57,12 @@ int main(void)
             {
                 if(wall[i][k]==1)
                 {
-                    brick SomeBrick(200+(65*k),100*(i+1%10),GRAY);
+                    brick SomeBrick(100+(85*k),100*(i+1%10),GRAY);
                     brickList.push_back(SomeBrick);
                 }
                 if(wall[i][k]==2)
                 {
-                    brick SomeBrick(200+(65*k),100*(i+1%10)+1,RED);
+                    brick SomeBrick(100+(85*k),100*(i+1%10)+1,RED);
                     brickList.push_back(SomeBrick);
 
                 }
@@ -73,10 +74,10 @@ int main(void)
     //other
     int framesCounter = 0;
 
-    button start((screenWidth/2)-20,(screenHeight/2),150,40,GREEN,"Start");
-    button credit((screenWidth/2)-20,(screenHeight/2)+50,150,40,YELLOW,"Credit");
-    button option((screenWidth/2)-20,(screenHeight/2)+100,150,40,BLUE,"option");
-    button exit((screenWidth/2)-20,(screenHeight/2)+150,150,40,RED,"exit");
+    button start((screenWidth/2.0)-20,(screenHeight/2.0),150,40,GREEN,"Start");
+    button credit((screenWidth/2.0)-20,(screenHeight/2.0)+50,150,40,YELLOW,"Credit");
+    button option((screenWidth/2.0)-20,(screenHeight/2.0)+100,150,40,BLUE,"option");
+    button exit((screenWidth/2.0)-20,(screenHeight/2.0)+150,150,40,RED,"exit");
 
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
@@ -126,7 +127,7 @@ int main(void)
                 b.bouncebob(player1.posx,player1.posy,200,20);
 
                 //cout<<"x = "<<b.ballPosition.x<<"\n y = "<<b.ballPosition.y<<"\n";
-                if(b.posy>screenHeight)
+                if(b.posy+b.ballRadius+10>screenHeight)
                 {
                     if(b.posx<0)
                         scoreP1++;
@@ -142,6 +143,7 @@ int main(void)
                         b.bouncebob(brickList[j].x,brickList[j].y,brickList[j].w,brickList[j].h);
 
                         brickList[j].del();
+                       //brickList.erase(brickList.begin() + j);//test
                     }
 
 
@@ -174,6 +176,7 @@ int main(void)
                     option.drawbut();
                     exit.drawbut();
                     DrawText("PONG", screenWidth/3, 40, 40, BLACK);
+                    DrawText("Made by Enderto", screenWidth/1.5, screenHeight-30, 20, BLACK);
 
 
                 } break;
@@ -207,7 +210,7 @@ int main(void)
 
     // De-Initialization
     brickList.clear();
-
+    brickList.erase(brickList.begin(),brickList.end());
     UnloadTexture(texture);
     CloseWindow();        // Close window and OpenGL context
 

@@ -3,7 +3,9 @@
 
 
 #include <iostream>
+#include <raylib.h>
 #include<string>
+
 using namespace std;
 class brick
 {
@@ -11,8 +13,8 @@ class brick
         //position of the button
         float x;
         float y;
-        float w = 60;
-        float h = 20 ;
+        float w = 80;
+        float h = 40 ;
         bool real = true;
         Rectangle Cord ;
         string text;
